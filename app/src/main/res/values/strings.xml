@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Losty</string>
+
+    <string name="main_screen_title">מה קרה ?</string>
+    <string name="lost">איבדתי</string>
+    <string name="found">מצאתי</string>
+
+    <string name="lost_screen_title">מה ניתן לעשות ?</string>
+    <string name="search">חפש אם מישהוא מצא</string>
+    <string name="publish">פרסם מודעה (בקלות!)</string>
+
+    <string name="search_screen_title">חפש אם מישהוא מצא:</string>
+    <string name="by_location">לפי מיקום</string>
+    <string name="advanced_search">חיפוש מתקדם</string>
+
+    <string name="found_screen_title">מה ניתן לעשות?</string>
+    <string name="search_ads">חפש עם מישהוא איבד</string>
+
+
+    <string name="donate">עזרו לנו לעזור לעוד אנשים! שתפו את האפליקציה</string>
+    <string name="use_my_location">השתמש במיקום שלי</string>
+    <string name="enter_address">הכנס כתובת:</string>
+    <string name="enter_address_hint">רחוב, מספר בית, עיר</string>
+    <string name="search_radios">רדיוס חיפוש  3 ק״מ</string>
+    <string name="private_file">my file</string>
+    <string name="welcome_text">מחזירים את כל האבדות הביתה</string>
+    <string name="search_owner">חפש אם מישהוא איבד</string>
+    <string name="search_public_transportation">חיפוש בתחבורה ציבורית</string>
+    <string name="navigation_drawer_open">open1</string>
+    <string name="navigation_drawer_close">close2</string>
+    <string name="action_menu">Open menu</string>
+    <string name="join">היצטרפות / כניסה</string>
+    <string name="my_adds">המודעות שלי</string>
+    <string name="help_us">עזרו לנו להגיע לכולם</string>
+    <string name="write_us">כתבו לנו</string>
+    <string name="terms_and_conditions">תנאי שימוש</string>
+    <string name="facebook_login">כניסה עם פייסבוק</string>
+    <string name="phone_login">כניסה באמצעות מספר טלפון</string>
+    <string name="enter">היכנס</string>
+</resources>

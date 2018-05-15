@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    android:background="#53b8db"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/join"
+        android:layout_marginTop="92dp"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="right|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="@string/join"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_width="22.5dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/join_icon"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#67c6e9"></View>
+
+    <LinearLayout
+        android:id="@+id/my_adds"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="right|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="@string/my_adds"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/location"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#67c6e9"></View>
+
+
+
+    <LinearLayout
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="right|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="@string/help_us"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_width="22.5dp"
+            android:layout_height="26.5dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/share"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#67c6e9"></View>
+
+
+    <LinearLayout
+        android:id="@+id/write_us"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="right|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="@string/write_us"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_width="21dp"
+            android:layout_height="16.5dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mail"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#67c6e9"></View>
+
+
+    <LinearLayout
+        android:id="@+id/terms_and_conditions"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="right|center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="@string/terms_and_conditions"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+
+        <ImageView
+            android:layout_width="22.5dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/settings"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#67c6e9"></View>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="62dp"
+        android:background="#67c6e9"></View>
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:text="@string/facebook_login"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"/>
+
+    <ImageView
+        android:id="@+id/facebook_login"
+        android:layout_width="282dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/facebook_button"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="47dp"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:text="@string/phone_login"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"
+        />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:padding="20dp"
+        android:layout_width="282dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_design"
+        android:drawableLeft="@drawable/zip_code"
+        />
+
+    <TextView
+        android:id="@+id/phone_login"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:text="@string/enter"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:layout_width="282dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="26.5dp"
+        android:background="@drawable/circular_textview"
+        />
+</LinearLayout>
