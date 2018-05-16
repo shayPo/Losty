@@ -14,10 +14,20 @@ class AdvenceSearch : Fragment()
 {
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-
         val view = inflater?.inflate(R.layout.advench_search
                 , container, false)
         return view
     }
+
+companion object {
+
+    val TYPE_ADVENCH_SEARCH : Int = 1
+    val TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION : Int = 2
+
+    fun newInstance(): Fragment {
+        val args: Bundle = Bundle()
+        val fragment = AdvenceSearch()
+        return fragment
+    }
+}
 }

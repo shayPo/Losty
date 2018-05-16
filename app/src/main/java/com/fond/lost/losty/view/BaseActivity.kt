@@ -2,6 +2,7 @@ package com.fond.lost.losty.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -23,8 +24,13 @@ open class BaseActivity : AppCompatActivity(), SideMenu.MenuClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_view)
 
+        putFragment(SideMenu.newInstance(this), R.id.content_frame)
+    }
+
+    fun putFragment(fragment : Fragment, xmlNumber : Int)
+    {
         val tx = supportFragmentManager.beginTransaction()
-        tx?.replace(R.id.content_frame, SideMenu.newInstance(this))
+        tx?.replace(xmlNumber, fragment)
         tx.commit()
     }
 

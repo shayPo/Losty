@@ -23,7 +23,7 @@ public class LogoScreen extends AppCompatActivity
 //            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //            startActivity(i);
 
-            Intent i = new Intent(getApplicationContext(), SearchByLocationActivity.class);
+            Intent i = new Intent(getApplicationContext(), AdvenceSearchActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
 
