@@ -1,6 +1,5 @@
 package com.fond.lost.losty.view
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.View
 import com.fond.lost.losty.R
@@ -13,7 +12,7 @@ import kotlinx.android.synthetic.main.advench_search_activity.*
  */
 class AdvenceSearchActivity : BaseActivity(), View.OnClickListener {
 
-    var SearchType : Int = 0;
+    var mSearchType: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +37,19 @@ class AdvenceSearchActivity : BaseActivity(), View.OnClickListener {
         if (v!!.id == R.id.advanced_search) {
             advanced_search_underline.visibility = View.VISIBLE
             search_public_transportation_underline.visibility = View.INVISIBLE
+            switchSearchType(AdvenceSearch.TYPE_ADVENCH_SEARCH)
         } else if (v!!.id == R.id.search_public_transportation) {
             advanced_search_underline.visibility = View.INVISIBLE
             search_public_transportation_underline.visibility = View.VISIBLE
+            switchSearchType(AdvenceSearch.TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION)
         }
     }
 
     fun switchSearchType(type : Int)
     {
-
-        putFragment(AdvenceSearch.newInstance(), R.id.search_frame)
+        if(type != mSearchType) {
+            mSearchType = type
+            putFragment(AdvenceSearch.newInstance(mSearchType), R.id.search_frame)
+        }
     }
 }

@@ -12,8 +12,11 @@ import com.fond.lost.losty.R
  */
 class AdvenceSearch : Fragment()
 {
+    var mType : Int = 0;
+
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mType = arguments.getInt(TYPE)
         val view = inflater?.inflate(R.layout.advench_search
                 , container, false)
         return view
@@ -23,10 +26,13 @@ companion object {
 
     val TYPE_ADVENCH_SEARCH : Int = 1
     val TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION : Int = 2
+    val TYPE : String = "type"
 
-    fun newInstance(): Fragment {
+    fun newInstance(type : Int): Fragment {
         val args: Bundle = Bundle()
+        args.putInt(TYPE, type)
         val fragment = AdvenceSearch()
+        fragment.arguments = args
         return fragment
     }
 }

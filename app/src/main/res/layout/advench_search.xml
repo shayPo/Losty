@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:id="@+id/background"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_object"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_object"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:drawableLeft="@drawable/arrow_drop_down"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorPrimary"
+        ></FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_object"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_object"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:drawableLeft="@drawable/arrow_drop_down"
+        android:fontFamily="@font/notosanshebrewregular"
+        android:textColor="@color/title_color"
+        android:textSize="20.5sp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorPrimary"
+        ></FrameLayout>
 
 </LinearLayout>
