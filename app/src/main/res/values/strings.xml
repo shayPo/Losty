@@ -37,5 +37,31 @@
     <string name="facebook_login">כניסה עם פייסבוק</string>
     <string name="phone_login">כניסה באמצעות מספר טלפון</string>
     <string name="enter">היכנס</string>
-    <string name="select_object">פריט לחיפוס :</string>
+    <string name="select_object">פריט לחיפוש :</string>
+    <string name="select_location">חפש בעיר</string>
+
+
+
+    <string name="dog">כלב</string>
+    <string name="item">פריט</string>
+    <string name="select_city">חפש בעיר :</string>
+    <string name="city">עיר</string>
+    <string name="select_transportin_type">בחר סוג תחבורה ציבורית :</string>
+    <string name="transportin_type">סוג תחבורה</string>
+    <string name="select_line">בחר קו :</string>
+    <string name="line">קו</string>
+
+    <string-array name="cities">
+        <item>תל אביב</item>
+        <item>פתח תקווה</item>
+        <item>ראש העין</item>
+        <item>ראשון לציון</item>
+    </string-array>
+
+    <string-array name="types">
+        <item>כלב</item>
+        <item>ארנק</item>
+        <item>תעודה</item>
+        <item>מפתחות</item>
+    </string-array>
 </resources>
