@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -30,7 +28,7 @@
         android:textColor="@color/title_color"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/location_text"
         android:hint="@string/enter_address_hint"
         android:layout_marginLeft="23.5dp"
@@ -39,6 +37,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorPrimary"
+        ></FrameLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

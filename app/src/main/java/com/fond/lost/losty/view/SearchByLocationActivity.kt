@@ -11,6 +11,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
@@ -58,27 +59,30 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         mMap!!.getUiSettings().setMyLocationButtonEnabled(true)
         mMap!!.getUiSettings().setMapToolbarEnabled(false)
         mMap!!.setOnMapLongClickListener(this)
+        val position = LatLng(32.027986, 35.106684)
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 6.5f))
+//        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.maxZoomLevel - 2))
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
 
-            if (resultCode === Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 val place = PlaceAutocomplete.getPlace(this, data)
 
                 if (place != null) {
                     location_text.setText(place.address, TextView.BufferType.EDITABLE);
-                    MoveMap(place.latLng, true)
+                    MoveMap(place.latLng)
                 }
 
-            } else if (resultCode === PlaceAutocomplete.RESULT_ERROR) {
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 val status = PlaceAutocomplete.getStatus(this, data)
                 Toast.makeText(this, "status" + status, Toast.LENGTH_LONG).show()
-            } else if (resultCode === Activity.RESULT_CANCELED) {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 // The user canceled the operation.
             }
-
         }
     }
 
@@ -119,20 +123,23 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
             //on
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                //&& ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 {
                     requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-                } else {
+                }
+                else
+                {
                     mMap?.setMyLocationEnabled(true)
                     LocationPresenter.getInstance(this, this)
                 }
-            } else {
+            }
+            else
+            {
                 mMap?.setMyLocationEnabled(true)
                 LocationPresenter.getInstance(this, this)
             }
 
         } else {
-            //off
+            mMap?.setMyLocationEnabled(false)
             LocationPresenter.getInstance(this, this).onDestroy(this)
         }
     }
@@ -140,9 +147,14 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
             mMap?.setMyLocationEnabled(true)
             LocationPresenter.getInstance(this, this)
+        }
+        else
+        {
+            locationbutton.isChecked = false
         }
     }
 
@@ -159,18 +171,15 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     }
 
     override fun onLocationChanged(p0: Location?) {
-        if (mMap != null && p0 != null) {
-            var LatLong: LatLng = LatLng(p0.latitude, p0.longitude)
-            MoveMap(LatLong, false)
-            LocationPresenter.getInstance(this, this).onDestroy(this)
-        }
+        Log.d("the location changes", "teh one" )
+//        if (mMap != null && p0 != null) {
+//            var LatLong: LatLng = LatLng(p0.latitude, p0.longitude)
+//            MoveMap(LatLong)
+//            LocationPresenter.getInstance(this, this).onDestroy(this)
+//        }
     }
 
-    fun MoveMap(latLong: LatLng, addPin: Boolean) {
-        if (addPin) {
-            mMap!!.addMarker(MarkerOptions().position(latLong)
-                    .title("My Location"));
-        }
+    fun MoveMap(latLong: LatLng) {
         mMap!!.moveCamera(CameraUpdateFactory.zoomTo(16.0F))
         mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLong))
     }

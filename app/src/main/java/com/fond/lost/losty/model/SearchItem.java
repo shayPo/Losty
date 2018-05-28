@@ -6,4 +6,22 @@ package com.fond.lost.losty.model;
 
 public class SearchItem
 {
+    private String mTest;
+
+    public SearchItem(String test)
+    {
+        mTest = test;
+    }
+
+    public String getT()
+    {
+        return mTest;
+    }
+
+    public void setT(String t)
+    {
+        mTest = t;
+    }
+
+
 }

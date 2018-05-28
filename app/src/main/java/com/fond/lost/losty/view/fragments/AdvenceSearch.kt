@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.fond.lost.losty.R
 import kotlinx.android.synthetic.main.advench_search.*
 
@@ -18,7 +19,10 @@ import kotlinx.android.synthetic.main.advench_search.*
  */
 class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickListener {
 
-    var mType : Int = 0;
+    var mType : Int = 0
+    var mDialogItems : Array<String>? = null
+    var mButton : TextView? = null
+    var mNumberOfResulte : Int = 0;
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,10 +65,12 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
     override fun onClick(v: View?) {
          if(v!!.id == R.id.selected_city)
          {
+             mButton = v as TextView?
              createDialog(R.array.cities, getString(R.string.select_city))
          }
           else if(v!!.id == R.id.selected_type)
          {
+             mButton = v as TextView?
              createDialog(R.array.types, getString(R.string.select_object))
          }
     }
@@ -72,13 +78,33 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
     private fun createDialog(items: Int, title : String) {
         val builderSingle = AlertDialog.Builder(activity)
         builderSingle.setTitle(title)
-        var adapter : ArrayAdapter<String> = ArrayAdapter(activity, R.layout.display_item, resources.getStringArray(items))
+        mDialogItems = resources.getStringArray(items)
+        var adapter : ArrayAdapter<String> = ArrayAdapter(activity, R.layout.display_item, mDialogItems)
         builderSingle.setAdapter(adapter, this)
         builderSingle.show()
     }
 
     override fun onClick(p0: DialogInterface?, p1: Int) {
+        if(mButton != null) {
+            if(mButton!!.text.equals(""))
+            {
+                mNumberOfResulte++
+            }
+            mButton!!.setText(mDialogItems!![p1])
+            mButton = null
+            mDialogItems = null
+            if (p0 != null) {
+                p0.dismiss()
+            }
+        }
+        if(mNumberOfResulte > 1)
+        {
+            type.text = selected_type.text
+            city.text = selected_city.text
+            sprator.visibility = View.VISIBLE
+            number_of_results.text = "12 תוצאות"
 
+        }
     }
 
     companion object {

@@ -17,13 +17,15 @@ public class LogoScreen extends AppCompatActivity
 
     Handler mHandler = new Handler();
 
-    private Runnable mLaunchTask = new Runnable() {
-        public void run() {
+    private Runnable mLaunchTask = new Runnable()
+    {
+        public void run()
+        {
 //            Intent i = new Intent(getApplicationContext(), MainActivity.class);AdvenceSearchActivity
 //            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //            startActivity(i);
 
-            Intent i = new Intent(getApplicationContext(), SearchByLocationActivity.class);
+            Intent i = new Intent(getApplicationContext(), AdvenceSearchActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
 
@@ -42,6 +44,7 @@ public class LogoScreen extends AppCompatActivity
     {
         mHandler.postDelayed(mLaunchTask, 2500);
     }
+
 
     @Override
     public void onBackPressed()
