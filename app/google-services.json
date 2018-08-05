@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "159416150730",
+    "firebase_url": "https://losty-200618.firebaseio.com",
+    "project_id": "losty-200618",
+    "storage_bucket": "losty-200618.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159416150730:android:c3b571349f2f4b4a",
+        "android_client_info": {
+          "package_name": "com.fond.lost.losty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159416150730-c1rvud9da1b031utqc84inv692igusto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fond.lost.losty",
+            "certificate_hash": "d1604aa141151d5c203caf475f339b144de5d19e"
+          }
+        },
+        {
+          "client_id": "159416150730-9eqrger3fi21lfhc7roprmkh2bc5j3cl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCLPcNi3g6Jk8M1Fi62Twh2w8aMOeilBg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159416150730-9eqrger3fi21lfhc7roprmkh2bc5j3cl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

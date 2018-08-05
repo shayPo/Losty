@@ -11,7 +11,6 @@ import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
@@ -35,8 +34,8 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     private var PLACE_AUTOCOMPLETE_REQUEST_CODE: Int = 1;
 
     private var mMap: GoogleMap? = null
-    private var _xDelta: Int = 0
-    private var _yDelta: Int = 0
+    private var mMoveMap: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +45,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
 
     override fun init() {
         super.init()
-        if (!locationbutton.isChecked) {
-            locationbutton.setOnCheckedChangeListener(this)
-        }
+        locationbutton.setOnCheckedChangeListener(this)
         location_text.setOnClickListener(this)
         var mapFragment: MapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment
         mapFragment.getMapAsync(this)
@@ -74,7 +71,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
 
                 if (place != null) {
                     location_text.setText(place.address, TextView.BufferType.EDITABLE);
-                    MoveMap(place.latLng)
+//                    MoveMap(place.latLng)
                 }
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -87,14 +84,12 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     }
 
     override fun onMapLongClick(p0: LatLng?) {
-        if (p0 != null)
-        {
-            var geocoder : Geocoder = Geocoder(this)
-            val list : MutableList<Address>? = geocoder.getFromLocation(p0.latitude, p0.longitude, 1)
-            var address : String = ""
+        if (p0 != null) {
+            var geocoder: Geocoder = Geocoder(this)
+            val list: MutableList<Address>? = geocoder.getFromLocation(p0.latitude, p0.longitude, 1)
+            var address: String = ""
 
-            if(list != null && list.size > 0)
-            {
+            if (list != null && list.size > 0) {
                 address = list[0].getAddressLine(0)
             }
             mMap!!.addMarker(MarkerOptions().position(p0)
@@ -122,23 +117,22 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         if (p1) {
             //on
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-                }
-                else
-                {
+                } else {
                     mMap?.setMyLocationEnabled(true)
                     LocationPresenter.getInstance(this, this)
+                    mMoveMap = true
                 }
-            }
-            else
-            {
+            } else {
                 mMap?.setMyLocationEnabled(true)
                 LocationPresenter.getInstance(this, this)
+                mMoveMap = true
             }
 
-        } else {
+        }
+        //off
+        else {
             mMap?.setMyLocationEnabled(false)
             LocationPresenter.getInstance(this, this).onDestroy(this)
         }
@@ -147,14 +141,24 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-        {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             mMap?.setMyLocationEnabled(true)
             LocationPresenter.getInstance(this, this)
-        }
-        else
-        {
+        } else {
             locationbutton.isChecked = false
+        }
+    }
+
+    fun setAddresses(latitude: Double, longitude: Double) {
+        var addresses: List<Address>
+        val geocoder = Geocoder(this)
+        addresses = geocoder.getFromLocation(latitude, longitude, 1);
+        if (addresses != null && addresses.size > 0) {
+            var address: Address = addresses.get(0)
+
+            //var street: String = address.getAddressLine(0)
+            var street: String = address.getThoroughfare()
+            location_text.text = street
         }
     }
 
@@ -171,15 +175,15 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     }
 
     override fun onLocationChanged(p0: Location?) {
-        Log.d("the location changes", "teh one" )
-//        if (mMap != null && p0 != null) {
-//            var LatLong: LatLng = LatLng(p0.latitude, p0.longitude)
-//            MoveMap(LatLong)
-//            LocationPresenter.getInstance(this, this).onDestroy(this)
-//        }
+        if(mMoveMap)
+        {
+            mMoveMap = false
+            setAddresses(p0?.latitude!!, p0?.longitude!!)
+            moveMap(LatLng(p0?.latitude!!, p0?.longitude!!))
+        }
     }
 
-    fun MoveMap(latLong: LatLng) {
+    fun moveMap(latLong: LatLng) {
         mMap!!.moveCamera(CameraUpdateFactory.zoomTo(16.0F))
         mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLong))
     }

@@ -18,6 +18,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(mPresenter.screenNumber > 0)
+        {
+            mPresenter.PreviousScreen()
+        }
+    }
+
     override fun init()
     {
         super.init()
@@ -56,7 +64,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setupFoundPageOne() {
-        setupPage(getString(R.string.search_owner), getString(R.string.by_location), getString(R.string.advanced_search))
+        setupPage(getString(R.string.search_owner_title), getString(R.string.by_location), getString(R.string.advanced_search))
     }
 
     private fun setupStartPage() {
@@ -90,6 +98,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         val intent = Intent(this, AdvenceSearchActivity::class.java)
         startActivity(intent)
     }
+
 
     override fun back(): Boolean {
         if (!mPresenter.PreviousScreen())

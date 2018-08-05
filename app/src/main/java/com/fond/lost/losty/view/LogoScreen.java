@@ -21,13 +21,13 @@ public class LogoScreen extends AppCompatActivity
     {
         public void run()
         {
-//            Intent i = new Intent(getApplicationContext(), MainActivity.class);AdvenceSearchActivity
-//            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(i);
-
-            Intent i = new Intent(getApplicationContext(), AdvenceSearchActivity.class);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
+
+//            Intent i = new Intent(getApplicationContext(), AdvenceSearchActivity.class);
+//            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(i);
 
         }
     };
