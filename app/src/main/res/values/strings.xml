@@ -25,6 +25,7 @@
     <string name="private_file">my file</string>
     <string name="welcome_text">מחזירים את כל האבדות הביתה</string>
     <string name="search_owner">חפש אם מישהוא איבד</string>
+    <string name="search_owner_title">חפש אם מישהוא איבד:</string>
     <string name="search_public_transportation">חיפוש בתחבורה ציבורית</string>
     <string name="navigation_drawer_open">open1</string>
     <string name="navigation_drawer_close">close2</string>
@@ -42,7 +43,6 @@
 
 
 
-    <string name="dog">כלב</string>
     <string name="item">פריט</string>
     <string name="select_city">חפש בעיר :</string>
     <string name="city">עיר</string>
@@ -50,6 +50,18 @@
     <string name="transportin_type">סוג תחבורה</string>
     <string name="select_line">בחר קו :</string>
     <string name="line">קו</string>
+
+    <string-array name="bus_lins">
+        <item>22</item>
+        <item>66</item>
+        <item>99</item>
+        <item>164</item>
+    </string-array>
+
+    <string-array name="bus_types">
+        <item>אוטובוס</item>
+        <item>מונית</item>
+    </string-array>
 
     <string-array name="cities">
         <item>תל אביב</item>

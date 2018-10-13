@@ -32,10 +32,10 @@ class SearchResults : RecyclerView.Adapter<SearchResults.Holder>
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-         holder.mDistance.text = "2.5 ק״מ"
+      /*   holder.mDistance.text = "2.5 ק״מ"
         holder.mDescription.text = "two"
         holder.mLocation.text = "three"
-        holder.mItemImage.setImageResource(R.drawable.type_dog)
+        holder.mItemImage.setImageResource(R.drawable.type_dog)*/
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view)

@@ -24,7 +24,10 @@ open class BaseActivity : AppCompatActivity(), SideMenu.MenuClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_view)
+    }
 
+    override fun onResume() {
+        super.onResume()
         putFragment(SideMenu.newInstance(this), R.id.content_frame)
     }
 

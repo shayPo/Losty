@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class MainScreenPresenter
 {
-    private Stack<Integer> mScreenList = new Stack<Integer>();
+    private Stack<Integer> mScreenList = new Stack<>();
     private int mScreenNumber = 0;
 
     public final int MAIN_SCREEN_NUMBER = 0;
@@ -26,7 +26,7 @@ public class MainScreenPresenter
     public final int LOST_SEARCH_SCREEN_NUMBER = 204;//
     public final int LOST_PUBLISH_SCREEN_NUMBER = 203;
     public final int LOST_SEARCH_BY_LOCATION = 206;
-    public final int LOST_ADVANCE_SEARCH = 207;
+    public final int LOST_ADVANCE_SEARCH = 205;
 
 
     public int getScreenNumber()
@@ -64,7 +64,8 @@ public class MainScreenPresenter
         }
         else
         {
-            mScreenNumber = mScreenList.size() > 0 ? mScreenList.pop() : 0;
+//            mScreenNumber = mScreenList.size() > 0 ? mScreenList.pop() : 0;
+            mScreenNumber = mScreenList.pop();
         }
         return exit;
     }

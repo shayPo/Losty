@@ -63,15 +63,25 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
     override fun onClick(v: View?) {
         mButton = v as TextView?
-        if (v!!.id == R.id.selected_city) {
-            createDialog(R.array.cities, getString(R.string.select_city))
-        } else if (v!!.id == R.id.selected_type) {
-            createDialog(R.array.types, getString(R.string.select_object))
+        if(mType == TYPE_ADVENCH_SEARCH)
+            {
+                if (v!!.id == R.id.selected_city) {
+                    createDialog(R.array.cities, getString(R.string.select_city))
+                } else if (v!!.id == R.id.selected_type) {
+                    createDialog(R.array.types, getString(R.string.select_object))
+                }
+            }
+        else{
+                if (v!!.id == R.id.selected_city) {
+                    createDialog(R.array.bus_lins, getString(R.string.select_line))
+                } else if (v!!.id == R.id.selected_type) {
+                createDialog(R.array.bus_types, getString(R.string.transportin_type))
+                }
         }
     }
 
     private fun createDialog(items: Int, title: String) {
-        val builderSingle = AlertDialog.Builder(activity)
+        var builderSingle = AlertDialog.Builder(activity)
         builderSingle.setTitle(title)
         mDialogItems = resources.getStringArray(items)
         var adapter: ArrayAdapter<String> = ArrayAdapter(activity, R.layout.display_item, mDialogItems)
@@ -92,27 +102,27 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
                 p0.dismiss()
             }
         }
-        if (mNumberOfResulte > 1) {
-            var searchPramters = StringBuilder()
-            searchPramters.append(selected_type.text)
-            searchPramters.append(" | ")
-            searchPramters.append(selected_city.text)
-            search_pramters.text = searchPramters.toString()
+        if (mNumberOfResulte > 0) {
+            var searchParameter = StringBuilder()
+            searchParameter.append(selected_type.text)
+            searchParameter.append(" | ")
+            searchParameter.append(selected_city.text)
+            search_pramters.text = searchParameter.toString()
             temp()
         }
     }
 
     private fun temp() {
-        var results = ArrayList<SearchItem>()
+        val results = ArrayList<SearchItem>()
         results.add(SearchItem(""))
         results.add(SearchItem(""))
         results.add(SearchItem(""))
         results.add(SearchItem(""))
         results.add(SearchItem(""))
-        setupresults(results)
+        setupResults(results)
     }
 
-    private fun setupresults(results: ArrayList<SearchItem>)
+    private fun setupResults(results: ArrayList<SearchItem>)
     {
         number_of_results.text = ""+ results.size + " תוצאות "
         results_display.layoutManager = GridLayoutManager(activity, 1)

@@ -37,11 +37,12 @@ public class SideMenu extends Fragment implements View.OnClickListener
 
     public static Fragment newInstance(MenuClickListener itemClickListener)
     {
-        if(myFragment == null)
-        {
-            myFragment = new SideMenu();
-        }
+//        if(myFragment == null)
+//        {
+//            myFragment = new SideMenu();
+//        }
 
+        myFragment = new SideMenu();
         myFragment.setMenuListener(itemClickListener);
         return myFragment;
     }
