@@ -15,7 +15,8 @@ import com.fond.lost.losty.R;
 public class LogoScreen extends AppCompatActivity
 {
 
-    Handler mHandler = new Handler();
+    private Handler mHandler = new Handler();
+    private final int mDelay = 2000;
 
     private Runnable mLaunchTask = new Runnable()
     {
@@ -37,7 +38,7 @@ public class LogoScreen extends AppCompatActivity
 
     private void init()
     {
-        mHandler.postDelayed(mLaunchTask, 9000);
+        mHandler.postDelayed(mLaunchTask, mDelay);
     }
 
 

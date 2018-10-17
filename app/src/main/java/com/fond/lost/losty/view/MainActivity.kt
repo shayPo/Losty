@@ -47,13 +47,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         ////
             mPresenter.FOUND_SCREEN_NUMBER -> setupFoundPage()
             mPresenter.FOUND_SCREEN_ONE -> setupFoundPageOne()
-            mPresenter.FOUND_SCREEN_TWO -> setupNoView()
+            mPresenter.FOUND_PUT_AD -> setupNoView()
             mPresenter.FOUND_SEARCH_BY_LOCATION -> gotoSearchByLocation()
             mPresenter.FOUND_ADVANCE_SEARCH -> gotoAdvenceSearch()
         ///
             mPresenter.LOST_SCREEN_NUMBER -> setupLostPage()
             mPresenter.LOST_SEARCH_SCREEN_NUMBER -> setupSearchPage()
-            mPresenter.LOST_PUBLISH_SCREEN_NUMBER -> setupNoView()
+            mPresenter.LOST_PUT_AD -> setupNoView()
             mPresenter.LOST_SEARCH_BY_LOCATION -> gotoSearchByLocation()
             mPresenter.LOST_ADVANCE_SEARCH -> gotoAdvenceSearch()
         }

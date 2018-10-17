@@ -71,7 +71,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
 
                 if (place != null) {
                     location_text.setText(place.address, TextView.BufferType.EDITABLE);
-//                    MoveMap(place.latLng)
+                    moveMap(place.latLng)
                 }
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -85,9 +85,9 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
 
     override fun onMapLongClick(p0: LatLng?) {
         if (p0 != null) {
-            var geocoder: Geocoder = Geocoder(this)
+            var geocoder = Geocoder(this)
             val list: MutableList<Address>? = geocoder.getFromLocation(p0.latitude, p0.longitude, 1)
-            var address: String = ""
+            var address = ""
 
             if (list != null && list.size > 0) {
                 address = list[0].getAddressLine(0)
@@ -149,7 +149,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         }
     }
 
-    fun setAddresses(latitude: Double, longitude: Double) {
+    private fun setAddresses(latitude: Double, longitude: Double) {
         var addresses: List<Address>
         val geocoder = Geocoder(this)
         addresses = geocoder.getFromLocation(latitude, longitude, 1);
@@ -183,7 +183,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         }
     }
 
-    fun moveMap(latLong: LatLng) {
+    private fun moveMap(latLong: LatLng) {
         mMap!!.moveCamera(CameraUpdateFactory.zoomTo(16.0F))
         mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLong))
     }

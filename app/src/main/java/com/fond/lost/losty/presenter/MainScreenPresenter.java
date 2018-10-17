@@ -17,14 +17,14 @@ public class MainScreenPresenter
 
     public final int FOUND_SCREEN_NUMBER = 101;
     public final int FOUND_SCREEN_ONE = 103;
-    public final int FOUND_SCREEN_TWO = 110;
+    public final int FOUND_PUT_AD = 102;
     public final int FOUND_ADVANCE_SEARCH = 104;
     public final int FOUND_SEARCH_BY_LOCATION = 105;
 
 
     public final int LOST_SCREEN_NUMBER = 202;
-    public final int LOST_SEARCH_SCREEN_NUMBER = 204;//
-    public final int LOST_PUBLISH_SCREEN_NUMBER = 203;
+    public final int LOST_SEARCH_SCREEN_NUMBER = 204;
+    public final int LOST_PUT_AD = 203;
     public final int LOST_SEARCH_BY_LOCATION = 206;
     public final int LOST_ADVANCE_SEARCH = 205;
 
