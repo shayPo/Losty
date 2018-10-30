@@ -65,10 +65,12 @@
     </LinearLayout>
 
     <ImageView
+        android:contentDescription="@string/desc"
         android:scaleType="fitXY"
         android:id="@+id/item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:src="@drawable/type_dog"/>
+        android:layout_weight="5" />
 </LinearLayout>
+
+    <!--//android:src="@drawable/type_dog"-->

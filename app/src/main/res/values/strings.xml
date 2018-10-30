@@ -50,6 +50,7 @@
     <string name="transportin_type">סוג תחבורה</string>
     <string name="select_line">בחר קו :</string>
     <string name="line">קו</string>
+    <string name="desc">image</string>
 
     <string-array name="bus_lins">
         <item>22</item>
