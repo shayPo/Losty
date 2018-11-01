@@ -14,7 +14,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.fond.lost.losty"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
 
     implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
 
 apply plugin: 'com.google.gms.google-services'
