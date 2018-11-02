@@ -7,20 +7,26 @@ import android.view.ViewGroup
 import com.fond.lost.losty.R
 import com.fond.lost.losty.model.SearchItem
 import kotlinx.android.synthetic.main.search_item.view.*
+import java.lang.ref.WeakReference
 
 /**
  * Created by Sahar on 28/05/2018.
  */
-class SearchResults : RecyclerView.Adapter<SearchResults.Holder>
-{
-    var mItems : ArrayList<SearchItem> = ArrayList<SearchItem>()
+class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults.Holder>() {
+    private var mItems: ArrayList<SearchItem> = ArrayList()
+    private var mListener : WeakReference<View.OnClickListener>? = null
 
-    constructor(data : List<SearchItem>)
-    {
+    init {
         mItems = ArrayList()
         mItems.addAll(data)
     }
 
+    constructor(data: List<SearchItem>, listener : View.OnClickListener?) : this(data)
+    {
+        if(listener != null) {
+            mListener = WeakReference(listener)
+        }
+    }
 
     override fun getItemCount(): Int {
         return mItems.size
@@ -32,17 +38,20 @@ class SearchResults : RecyclerView.Adapter<SearchResults.Holder>
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-      /*   holder.mDistance.text = "2.5 ק״מ"
-        holder.mDescription.text = "two"
-        holder.mLocation.text = "three"
-        holder.mItemImage.setImageResource(R.drawable.type_dog)*/
+        holder.bind(mItems[position])
     }
 
-    class Holder(view: View) : RecyclerView.ViewHolder(view)
-    {
-        public val mDistance = view.distance
-        public val mDescription = view.description
-        public val mLocation = view.location
-        public val mItemImage = view.item_image
+    class Holder(view: View?) : RecyclerView.ViewHolder(view) {
+        private val mDistance = view?.distance
+        private val mDescription = view?.description
+        private val mLocation = view?.location
+        private val mItemImage = view?.item_image
+
+        fun bind(data: SearchItem) {
+            mDistance?.text = data.mDistance
+            mDescription?.text = data.mDescription
+            mLocation?.text = data.mLocation
+            mItemImage?.setImageResource(data.mItemImage)
+        }
     }
 }

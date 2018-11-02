@@ -34,6 +34,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         lower_button.setOnClickListener(this)
     }
 
+
+
+
     override fun onClick(v: View?) {
         if (v != null) {
             mPresenter.NextScreen(v.id)
@@ -95,7 +98,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun gotoAdvenceSearch() {
-        val intent = Intent(this, AdvenceSearchActivity::class.java)
+        val intent = Intent(this, AdvancedSearchActivity::class.java)
         startActivity(intent)
     }
 

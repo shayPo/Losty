@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.base_view.*
  */
 open class BaseActivity : AppCompatActivity(), SideMenu.MenuClickListener {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_view)

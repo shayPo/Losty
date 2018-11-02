@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Fragment
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,9 @@ import android.widget.TextView
 import com.fond.lost.losty.R
 import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.view.adapters.SearchResults
-import kotlinx.android.synthetic.main.advench_search.*
+import kotlinx.android.synthetic.main.advanced_search.*
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 
 
 /**
@@ -24,12 +25,12 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
     var mType: Int = 0
     var mDialogItems: Array<String>? = null
     var mButton: TextView? = null
-    var mNumberOfResulte: Int = 0;
+    var mItemsSet: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mType = arguments.getInt(TYPE)
-        val view = inflater?.inflate(R.layout.advench_search
+        val view = inflater?.inflate(R.layout.advanced_search
                 , container, false)
         return view
     }
@@ -63,20 +64,18 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
     override fun onClick(v: View?) {
         mButton = v as TextView?
-        if(mType == TYPE_ADVENCH_SEARCH)
-            {
-                if (v!!.id == R.id.selected_city) {
-                    createDialog(R.array.cities, getString(R.string.select_city))
-                } else if (v!!.id == R.id.selected_type) {
-                    createDialog(R.array.types, getString(R.string.select_object))
-                }
+        if (mType == TYPE_ADVENCH_SEARCH) {
+            if (v!!.id == R.id.selected_city) {
+                createDialog(R.array.cities, getString(R.string.select_city))
+            } else if (v!!.id == R.id.selected_type) {
+                createDialog(R.array.types, getString(R.string.select_object))
             }
-        else{
-                if (v!!.id == R.id.selected_city) {
-                    createDialog(R.array.bus_lins, getString(R.string.select_line))
-                } else if (v!!.id == R.id.selected_type) {
+        } else {
+            if (v!!.id == R.id.selected_city) {
+                createDialog(R.array.bus_lins, getString(R.string.select_line))
+            } else if (v!!.id == R.id.selected_type) {
                 createDialog(R.array.bus_types, getString(R.string.transportin_type))
-                }
+            }
         }
     }
 
@@ -93,16 +92,14 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
         if (mButton != null) {
             if (mButton!!.tag != null) {
                 mButton!!.tag = null
-                mNumberOfResulte++
+                mItemsSet++
             }
-            mButton!!.setText(mDialogItems!![p1])
+            mButton?.text = mDialogItems!![p1]
             mButton = null
             mDialogItems = null
-            if (p0 != null) {
-                p0.dismiss()
-            }
+            p0?.dismiss()
         }
-        if (mNumberOfResulte > 0) {
+        if (mItemsSet == 2) {
             var searchParameter = StringBuilder()
             searchParameter.append(selected_type.text)
             searchParameter.append(" | ")
@@ -114,26 +111,31 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
     private fun temp() {
         val results = ArrayList<SearchItem>()
-        results.add(SearchItem(""))
-        results.add(SearchItem(""))
-        results.add(SearchItem(""))
-        results.add(SearchItem(""))
-        results.add(SearchItem(""))
+
+        results.add(SearchItem())
+        results.add(SearchItem())
+        results.add(SearchItem())
+        results.add(SearchItem())
+        results.add(SearchItem())
         setupResults(results)
     }
 
-    private fun setupResults(results: ArrayList<SearchItem>)
-    {
-        number_of_results.text = ""+ results.size + " תוצאות "
-        results_display.layoutManager = GridLayoutManager(activity, 1)
+    private fun setupResults(results: ArrayList<SearchItem>) {
+        number_of_results.text = "" + results.size + " תוצאות "
+        val layoutManager = LinearLayoutManager(activity)
+        val dividerItemDecoration = DividerItemDecoration(activity,
+                layoutManager.orientation)
+        dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.divider))
+        results_display.addItemDecoration(dividerItemDecoration)
+        results_display.layoutManager = layoutManager
         results_display.adapter = SearchResults(results)
     }
 
     companion object {
 
-        val TYPE_ADVENCH_SEARCH: Int = 1
-        val TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION: Int = 2
-        val TYPE: String = "type"
+        val TYPE_ADVENCH_SEARCH = 1
+        val TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION = 2
+        val TYPE = "type"
 
         fun newInstance(type: Int): Fragment {
             val args: Bundle = Bundle()

@@ -36,7 +36,7 @@
 
         <activity android:name=".view.SearchByLocationActivity"></activity>
 
-        <activity android:name=".view.AdvenceSearchActivity">
+        <activity android:name=".view.AdvancedSearchActivity">
         </activity>
 
         <activity android:name=".view.JoinActivity"></activity>
