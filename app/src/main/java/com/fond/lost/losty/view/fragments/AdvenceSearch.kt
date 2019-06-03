@@ -3,7 +3,11 @@ package com.fond.lost.losty.view.fragments
 import android.app.AlertDialog
 import android.app.Fragment
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +18,11 @@ import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.view.adapters.SearchResults
 import kotlinx.android.synthetic.main.advanced_search.*
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MotionEvent
+import com.fond.lost.losty.view.ItemDataActivity
+import com.fond.lost.losty.view.adapters.CustomLinearLayoutManager
 
 
 /**
@@ -63,18 +71,27 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
     }
 
     override fun onClick(v: View?) {
-        mButton = v as TextView?
-        if (mType == TYPE_ADVENCH_SEARCH) {
-            if (v!!.id == R.id.selected_city) {
-                createDialog(R.array.cities, getString(R.string.select_city))
-            } else if (v!!.id == R.id.selected_type) {
-                createDialog(R.array.types, getString(R.string.select_object))
+        when(v?.id) {
+            R.id.lost_item -> {
+                val data : Parcelable = v?.tag as Parcelable
+                val intent = Intent(activity, ItemDataActivity::class.java).apply { putExtra("DATA", data) }
+                startActivity(intent)
             }
-        } else {
-            if (v!!.id == R.id.selected_city) {
-                createDialog(R.array.bus_lins, getString(R.string.select_line))
-            } else if (v!!.id == R.id.selected_type) {
-                createDialog(R.array.bus_types, getString(R.string.transportin_type))
+            else -> {
+                mButton = v as TextView?
+                if (mType == TYPE_ADVENCH_SEARCH) {
+                    if (v?.id == R.id.selected_city) {
+                        createDialog(R.array.cities, getString(R.string.select_city))
+                    } else if (v!!.id == R.id.selected_type) {
+                        createDialog(R.array.types, getString(R.string.select_object))
+                    }
+                } else {
+                    if (v?.id == R.id.selected_city) {
+                        createDialog(R.array.bus_lins, getString(R.string.select_line))
+                    } else if (v!!.id == R.id.selected_type) {
+                        createDialog(R.array.bus_types, getString(R.string.transportin_type))
+                    }
+                }
             }
         }
     }
@@ -90,8 +107,8 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
     override fun onClick(p0: DialogInterface?, p1: Int) {
         if (mButton != null) {
-            if (mButton!!.tag != null) {
-                mButton!!.tag = null
+            if (mButton?.tag != null) {
+                mButton?.tag = null
                 mItemsSet++
             }
             mButton?.text = mDialogItems!![p1]
@@ -100,11 +117,14 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
             p0?.dismiss()
         }
         if (mItemsSet == 2) {
+            //set title
             var searchParameter = StringBuilder()
             searchParameter.append(selected_type.text)
             searchParameter.append(" | ")
             searchParameter.append(selected_city.text)
             search_pramters.text = searchParameter.toString()
+
+            //TODO: add server data
             temp()
         }
     }
@@ -117,18 +137,48 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
         results.add(SearchItem())
         results.add(SearchItem())
         results.add(SearchItem())
+        results.add(SearchItem())
         setupResults(results)
     }
 
     private fun setupResults(results: ArrayList<SearchItem>) {
+//        number_of_results.text = "" + results.size + " תוצאות "
+//        val layoutManager = LinearLayoutManager(activity)
+//        val dividerItemDecoration = DividerItemDecoration(activity,
+//                layoutManager.orientation)
+//        dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.divider))
+//        results_display.addItemDecoration(dividerItemDecoration)
+//        results_display.layoutManager = layoutManager
+//        results_display.adapter = SearchResults(results, this)
+
+
+
         number_of_results.text = "" + results.size + " תוצאות "
-        val layoutManager = LinearLayoutManager(activity)
+        val layoutManager = LinearLayoutManager()
+        val layoutManager = CustomLinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL , false)
+
         val dividerItemDecoration = DividerItemDecoration(activity,
                 layoutManager.orientation)
         dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.divider))
         results_display.addItemDecoration(dividerItemDecoration)
         results_display.layoutManager = layoutManager
-        results_display.adapter = SearchResults(results)
+        results_display.adapter = SearchResults(results, this)
+
+        results_display.setOnTouchListener{ view, motionEvent -> true}
+
+        loopWork()
+    }
+
+    private var index = 0
+    fun loopWork()
+    {
+        var work = Handler(Looper.getMainLooper())
+        work.postDelayed(Runnable {
+            index++
+            index = index%6
+            results_display.smoothScrollToPosition(index)
+            loopWork()
+        } , 2000)
     }
 
     companion object {
@@ -138,7 +188,7 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
         val TYPE = "type"
 
         fun newInstance(type: Int): Fragment {
-            val args: Bundle = Bundle()
+            val args = Bundle()
             args.putInt(TYPE, type)
             val fragment = AdvenceSearch()
             fragment.arguments = args

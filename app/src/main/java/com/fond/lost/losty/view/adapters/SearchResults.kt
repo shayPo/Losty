@@ -14,18 +14,15 @@ import java.lang.ref.WeakReference
  */
 class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults.Holder>() {
     private var mItems: ArrayList<SearchItem> = ArrayList()
-    private var mListener : WeakReference<View.OnClickListener>? = null
+    private var mListener: View.OnClickListener? = null
 
     init {
         mItems = ArrayList()
         mItems.addAll(data)
     }
 
-    constructor(data: List<SearchItem>, listener : View.OnClickListener?) : this(data)
-    {
-        if(listener != null) {
-            mListener = WeakReference(listener)
-        }
+    constructor(data: List<SearchItem>, listener: View.OnClickListener?) : this(data) {
+        mListener = listener
     }
 
     override fun getItemCount(): Int {
@@ -38,7 +35,7 @@ class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(mItems[position])
+        holder.bind(mItems[position], mListener)
     }
 
     class Holder(view: View?) : RecyclerView.ViewHolder(view) {
@@ -46,8 +43,11 @@ class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults
         private val mDescription = view?.description
         private val mLocation = view?.location
         private val mItemImage = view?.item_image
+        private val mBack = view
 
-        fun bind(data: SearchItem) {
+        fun bind(data: SearchItem, listener: View.OnClickListener?) {
+            mBack?.setOnClickListener(listener)
+            mBack?.tag = data
             mDistance?.text = data.mDistance
             mDescription?.text = data.mDescription
             mLocation?.text = data.mLocation

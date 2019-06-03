@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ItemDataActivity"
+    >
+
+
+    <ImageView
+        android:onClick="nextImage"
+        android:id="@+id/next"
+        android:layout_width="11dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/next_image"
+        app:layout_constraintBottom_toBottomOf="@+id/item_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_image" />
+
+    <ImageSwitcher
+        android:inAnimation="@anim/image_in"
+        android:outAnimation="@anim/image_out"
+        android:id="@+id/item_image"
+        android:layout_width="0dp"
+        android:layout_height="211dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/next"
+        app:layout_constraintStart_toEndOf="@+id/prev"
+        app:layout_constraintTop_toTopOf="parent"></ImageSwitcher>
+
+    <ImageView
+        android:onClick="previousIImage"
+        android:id="@+id/prev"
+        android:layout_width="11dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_image"
+        app:srcCompat="@drawable/prev_image" />
+</android.support.constraint.ConstraintLayout>

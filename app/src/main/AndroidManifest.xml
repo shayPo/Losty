@@ -41,6 +41,8 @@
 
         <activity android:name=".view.JoinActivity"></activity>
 
+        <activity android:name=".view.ItemDataActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"

@@ -1,100 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:id="@+id/background"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/select_object"
-        android:layout_marginEnd="25dp"
         android:layout_marginTop="34dp"
+        android:layout_marginEnd="25dp"
         android:fontFamily="@font/notosanshebrewregular"
+        android:text="@string/select_object"
         android:textColor="@color/title_color"
-        android:textSize="20.5dp"/>
+        android:textSize="20.5dp" />
 
     <TextView
-        android:tag="first"
         android:id="@+id/selected_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/select_object"
-        android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
-        android:gravity="center"
+        android:layout_marginRight="25dp"
         android:drawableStart="@drawable/arrow_drop_down"
         android:fontFamily="@font/notosanshebrewregular"
+        android:gravity="center"
+        android:tag="first"
+        android:text="@string/select_object"
         android:textColor="@color/title_color"
-        android:textSize="20.5dp"/>
+        android:textSize="20.5dp" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/colorPrimary"
-        ></FrameLayout>
+        android:background="@color/colorPrimary"></FrameLayout>
 
     <TextView
         android:id="@+id/title_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/select_location"
-        android:layout_marginEnd="25dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="25dp"
         android:fontFamily="@font/notosanshebrewregular"
+        android:text="@string/select_location"
         android:textColor="@color/title_color"
-        android:textSize="20.5sp"/>
+        android:textSize="20.5sp" />
 
     <TextView
-        android:tag="first"
         android:id="@+id/selected_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="תל אביב"
-        android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
-        android:gravity="center"
+        android:layout_marginRight="25dp"
         android:fontFamily="@font/notosanshebrewregular"
+        android:gravity="center"
+        android:tag="first"
+        android:text="תל אביב"
         android:textColor="@color/title_color"
-        android:textSize="20.5sp"/>
+        android:textSize="20.5sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/colorPrimary"
-        ></FrameLayout>
+        android:background="@color/colorPrimary"></FrameLayout>
 
     <LinearLayout
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:gravity="start"
-            android:paddingLeft="5dp"
-            android:fontFamily="@font/notosanshebrewregular"
+
             android:id="@+id/number_of_results"
-            android:layout_weight="4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:fontFamily="@font/notosanshebrewregular"
+            android:gravity="end"
+            android:textAlignment="textEnd" />
 
         <TextView
-            android:layout_weight="6"
-            android:fontFamily="@font/notosanshebrewregular"
             android:id="@+id/search_pramters"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:fontFamily="@font/notosanshebrewregular" />
 
     </LinearLayout>
 
@@ -103,16 +102,15 @@
         android:layout_height="2dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/colorPrimary"
-        ></FrameLayout>
+        android:background="@color/colorPrimary"></FrameLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="25dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="15dp"
         android:id="@+id/results_display"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
