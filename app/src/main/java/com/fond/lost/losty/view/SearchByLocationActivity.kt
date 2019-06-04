@@ -57,8 +57,9 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         mMap!!.getUiSettings().setMapToolbarEnabled(false)
         mMap!!.setOnMapLongClickListener(this)
         val position = LatLng(32.027986, 35.106684)
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 6.5f))
-//        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.maxZoomLevel - 2))
+
+        //mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 6.5f))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.maxZoomLevel - 2))
     }
 
 

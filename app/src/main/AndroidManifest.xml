@@ -22,7 +22,8 @@
         <uses-library android:name="com.google.android.maps" />
 
 
-        <activity android:name=".view.LogoScreen">
+        <activity android:name=".view.LogoScreen"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -31,17 +32,19 @@
         </activity>
 
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+            android:screenOrientation="portrait" >
         </activity>
 
-        <activity android:name=".view.SearchByLocationActivity"></activity>
+        <activity android:name=".view.SearchByLocationActivity"
+            android:screenOrientation="portrait" ></activity>
 
         <activity android:name=".view.AdvancedSearchActivity">
         </activity>
 
-        <activity android:name=".view.JoinActivity"></activity>
+        <activity android:name=".view.JoinActivity" android:screenOrientation="portrait" ></activity>
 
-        <activity android:name=".view.ItemDataActivity"></activity>
+        <activity android:name=".view.ItemDataActivity" android:screenOrientation="portrait" ></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -53,7 +56,7 @@
             <!--&gt;</meta-data>-->
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyBOhSyDfA1rHUMrGJ_G_k32vRZVadvCDSk"/>
+                   android:value="AIzaSyDCLPcNi3g6Jk8M1Fi62Twh2w8aMOeilBg"/>
     </application>
 
 </manifest>

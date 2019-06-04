@@ -18,11 +18,8 @@ import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.view.adapters.SearchResults
 import kotlinx.android.synthetic.main.advanced_search.*
 import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MotionEvent
 import com.fond.lost.losty.view.ItemDataActivity
-import com.fond.lost.losty.view.adapters.CustomLinearLayoutManager
 
 
 /**
@@ -154,8 +151,7 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
 
         number_of_results.text = "" + results.size + " תוצאות "
-        val layoutManager = LinearLayoutManager()
-        val layoutManager = CustomLinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL , false)
+        val layoutManager = LinearLayoutManager(activity.applicationContext, LinearLayoutManager.HORIZONTAL , false)
 
         val dividerItemDecoration = DividerItemDecoration(activity,
                 layoutManager.orientation)

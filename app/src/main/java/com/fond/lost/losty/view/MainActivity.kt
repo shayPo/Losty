@@ -34,9 +34,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         lower_button.setOnClickListener(this)
     }
 
-
-
-
     override fun onClick(v: View?) {
         if (v != null) {
             mPresenter.NextScreen(v.id)
@@ -83,9 +80,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setupPage(pageTitle: String, topButton: String, lowerButton: String) {
-        page_title.setText(pageTitle)
-        top_button.setText(topButton)
-        lower_button.setText(lowerButton)
+        page_title.text = pageTitle
+        top_button.text = topButton
+        lower_button.text = lowerButton
     }
 
     private fun setupNoView() {

@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.fond.lost.losty.R
-import com.fond.lost.losty.model.Number1
 import com.fond.lost.losty.view.fragments.SideMenu
 import kotlinx.android.synthetic.main.base_view.*
 

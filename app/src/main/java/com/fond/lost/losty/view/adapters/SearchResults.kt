@@ -38,7 +38,7 @@ class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults
         holder.bind(mItems[position], mListener)
     }
 
-    class Holder(view: View?) : RecyclerView.ViewHolder(view) {
+    class Holder(view: View) : RecyclerView.ViewHolder(view) {
         private val mDistance = view?.distance
         private val mDescription = view?.description
         private val mLocation = view?.location
