@@ -44,6 +44,7 @@
         android:layout_marginRight="25dp"
         android:background="@color/colorPrimary"
         ></FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,10 +66,44 @@
         <fragment
             android:id="@+id/map"
             android:layout_below="@id/search_radios"
+            android:layout_above="@+id/ad"
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:apiKey="AIzaSyBOhSyDfA1rHUMrGJ_G_k32vRZVadvCDSk"
              />
+
+
+
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/recenter"
+            android:layout_alignLeft="@+id/map"
+            android:layout_above="@+id/addPin"
+            android:layout_marginLeft="7dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/recenter"
+            android:layout_width="22dp"
+            android:layout_height="22dp" />
+
+        <ImageView
+            android:layout_marginLeft="7dp"
+            android:id="@+id/addPin"
+            android:layout_alignLeft="@+id/map"
+            android:layout_above="@+id/ad"
+            android:layout_marginBottom="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/add_pin"
+            android:layout_width="22dp"
+            android:layout_height="32dp" />
+
+        <FrameLayout
+            android:id="@+id/ad"
+            android:layout_alignParentBottom="true"
+            android:background="#ec008c"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"></FrameLayout>
+
     </RelativeLayout>
+
 </LinearLayout>

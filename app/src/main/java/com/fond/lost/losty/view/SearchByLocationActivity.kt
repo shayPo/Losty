@@ -58,8 +58,8 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         mMap!!.setOnMapLongClickListener(this)
         val position = LatLng(32.027986, 35.106684)
 
-        //mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 6.5f))
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.maxZoomLevel - 2))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.minZoomLevel))
+        //mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(position, mMap!!.maxZoomLevel))
     }
 
 
@@ -104,7 +104,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                 try {
                     var intent: Intent =
                             PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                                    .build(this);
+                                    .build(this)
                     startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
                 } catch (e: GooglePlayServicesRepairableException) {
                     // TODO: Handle the error.
@@ -117,16 +117,11 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
     override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
         if (p1) {
             //on
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M &&
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-                } else {
-                    mMap?.setMyLocationEnabled(true)
-                    LocationPresenter.getInstance(this, this)
-                    mMoveMap = true
-                }
             } else {
-                mMap?.setMyLocationEnabled(true)
+                mMap?.isMyLocationEnabled = true
                 LocationPresenter.getInstance(this, this)
                 mMoveMap = true
             }
@@ -134,7 +129,7 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         }
         //off
         else {
-            mMap?.setMyLocationEnabled(false)
+            mMap?.isMyLocationEnabled = false
             LocationPresenter.getInstance(this, this).onDestroy(this)
         }
     }

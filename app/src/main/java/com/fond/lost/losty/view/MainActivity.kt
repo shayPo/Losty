@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.fond.lost.losty.R
+import com.fond.lost.losty.presenter.AdvancedSearchPresenter
+import com.fond.lost.losty.presenter.ItemDataPresenter
 import com.fond.lost.losty.presenter.MainScreenPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -47,15 +49,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         ////
             mPresenter.FOUND_SCREEN_NUMBER -> setupFoundPage()
             mPresenter.FOUND_SCREEN_ONE -> setupFoundPageOne()
-            mPresenter.FOUND_PUT_AD -> setupNoView()
+            mPresenter.FOUND_PUT_AD -> gotoCreateAD()
             mPresenter.FOUND_SEARCH_BY_LOCATION -> gotoSearchByLocation()
-            mPresenter.FOUND_ADVANCE_SEARCH -> gotoAdvenceSearch()
+            mPresenter.FOUND_ADVANCE_SEARCH -> gotoAdvancedSearch(AdvancedSearchPresenter.FOUND)
         ///
             mPresenter.LOST_SCREEN_NUMBER -> setupLostPage()
             mPresenter.LOST_SEARCH_SCREEN_NUMBER -> setupSearchPage()
-            mPresenter.LOST_PUT_AD -> setupNoView()
+            mPresenter.LOST_PUT_AD -> gotoCreateAD()
             mPresenter.LOST_SEARCH_BY_LOCATION -> gotoSearchByLocation()
-            mPresenter.LOST_ADVANCE_SEARCH -> gotoAdvenceSearch()
+            mPresenter.LOST_ADVANCE_SEARCH -> gotoAdvancedSearch(AdvancedSearchPresenter.LOST)
         }
     }
 
@@ -85,8 +87,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         lower_button.text = lowerButton
     }
 
-    private fun setupNoView() {
-        page_title.setText("אין כותרת")
+//    private fun setupNoView() {
+//        page_title.setText("אין כותרת")
+//    }
+
+    private fun gotoCreateAD()
+    {
+
     }
 
     private fun gotoSearchByLocation() {
@@ -94,8 +101,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
-    private fun gotoAdvenceSearch() {
+    private fun gotoAdvancedSearch(type : Int) {
         val intent = Intent(this, AdvancedSearchActivity::class.java)
+        intent.putExtra(getString(R.string.search_object), type)
         startActivity(intent)
     }
 

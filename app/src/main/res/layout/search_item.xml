@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/list_item_back"
     android:layout_width="match_parent"
-    android:id="@+id/lost_item"
-    android:layout_height="match_parent">
+    android:id="@+id/item"
+    android:layout_height="105dp">
     <!--105-->
 
     <ImageView

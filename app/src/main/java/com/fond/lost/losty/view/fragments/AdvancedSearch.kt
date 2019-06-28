@@ -1,12 +1,10 @@
 package com.fond.lost.losty.view.fragments
 
 import android.app.AlertDialog
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
@@ -25,30 +23,31 @@ import com.fond.lost.losty.view.ItemDataActivity
 /**
  * Created by Sahar on 20/04/2018.
  */
-class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickListener {
+class AdvancedSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickListener {
 
     var mType: Int = 0
     var mDialogItems: Array<String>? = null
     var mButton: TextView? = null
     var mItemsSet: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater?,
+    override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mType = arguments.getInt(TYPE)
-        val view = inflater?.inflate(R.layout.advanced_search
-                , container, false)
+        var view : View? = null
+        if(arguments != null) {
+            mType = arguments!!.getInt(TYPE)
+            view = inflater.inflate(R.layout.advanced_search
+                    , container, false)
+        }
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (view != null) {
-            initView()
-        }
+        initView()
     }
 
     private fun initView() {
-        if (mType == TYPE_ADVENCH_SEARCH) {
+        if (mType == TYPE_ADVANCED_SEARCH) {
             title_type.setText(R.string.select_object)
             selected_type.setText(R.string.item)
             selected_type.setOnClickListener(this)
@@ -56,7 +55,7 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
             title_city.setText(R.string.select_city)
             selected_city.setText(R.string.city)
             selected_city.setOnClickListener(this)
-        } else if (mType == TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION) {
+        } else if (mType == TYPE_ADVANCED_SEARCH_PUBLIC_TRANSPORTATION) {
             title_type.setText(R.string.select_transportin_type)
             selected_type.setText(R.string.transportin_type)
             selected_type.setOnClickListener(this)
@@ -66,26 +65,26 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
             selected_city.setOnClickListener(this)
         }
     }
-
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.lost_item -> {
-                val data : Parcelable = v?.tag as Parcelable
+//?
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.item -> {
+                val data : Parcelable = v.tag as Parcelable
                 val intent = Intent(activity, ItemDataActivity::class.java).apply { putExtra("DATA", data) }
                 startActivity(intent)
             }
             else -> {
                 mButton = v as TextView?
-                if (mType == TYPE_ADVENCH_SEARCH) {
-                    if (v?.id == R.id.selected_city) {
+                if (mType == TYPE_ADVANCED_SEARCH) {
+                    if (v.id == R.id.selected_city) {
                         createDialog(R.array.cities, getString(R.string.select_city))
-                    } else if (v!!.id == R.id.selected_type) {
+                    } else if (v.id == R.id.selected_type) {
                         createDialog(R.array.types, getString(R.string.select_object))
                     }
                 } else {
-                    if (v?.id == R.id.selected_city) {
+                    if (v.id == R.id.selected_city) {
                         createDialog(R.array.bus_lins, getString(R.string.select_line))
-                    } else if (v!!.id == R.id.selected_type) {
+                    } else if (v.id == R.id.selected_type) {
                         createDialog(R.array.bus_types, getString(R.string.transportin_type))
                     }
                 }
@@ -115,11 +114,13 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
         }
         if (mItemsSet == 2) {
             //set title
+            results_title.visibility = View.VISIBLE
             var searchParameter = StringBuilder()
             searchParameter.append(selected_type.text)
             searchParameter.append(" | ")
             searchParameter.append(selected_city.text)
             search_pramters.text = searchParameter.toString()
+
 
             //TODO: add server data
             temp()
@@ -150,43 +151,27 @@ class AdvenceSearch : Fragment(), View.OnClickListener, DialogInterface.OnClickL
 
 
 
-        number_of_results.text = "" + results.size + " תוצאות "
-        val layoutManager = LinearLayoutManager(activity.applicationContext, LinearLayoutManager.HORIZONTAL , false)
-
+        number_of_results.text = getString(R.string.results, results.size)
+        val layoutManager = LinearLayoutManager(activity!!.applicationContext)
         val dividerItemDecoration = DividerItemDecoration(activity,
                 layoutManager.orientation)
-        dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.divider))
+        dividerItemDecoration.setDrawable(activity!!.getDrawable(R.drawable.divider))
         results_display.addItemDecoration(dividerItemDecoration)
         results_display.layoutManager = layoutManager
         results_display.adapter = SearchResults(results, this)
 
-        results_display.setOnTouchListener{ view, motionEvent -> true}
-
-        loopWork()
-    }
-
-    private var index = 0
-    fun loopWork()
-    {
-        var work = Handler(Looper.getMainLooper())
-        work.postDelayed(Runnable {
-            index++
-            index = index%6
-            results_display.smoothScrollToPosition(index)
-            loopWork()
-        } , 2000)
+//        results_display.setOnTouchListener{ view, motionEvent -> true}
     }
 
     companion object {
-
-        val TYPE_ADVENCH_SEARCH = 1
-        val TYPE_ADVENCH_SEARCH_PUBLIC_TRANSPORTATION = 2
-        val TYPE = "type"
+        const val TYPE_ADVANCED_SEARCH = 1
+        const val TYPE_ADVANCED_SEARCH_PUBLIC_TRANSPORTATION = 2
+        const val TYPE = "type"
 
         fun newInstance(type: Int): Fragment {
             val args = Bundle()
             args.putInt(TYPE, type)
-            val fragment = AdvenceSearch()
+            val fragment = AdvancedSearch()
             fragment.arguments = args
             return fragment
         }

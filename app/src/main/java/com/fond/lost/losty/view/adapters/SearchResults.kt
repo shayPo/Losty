@@ -17,7 +17,6 @@ class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults
     private var mListener: View.OnClickListener? = null
 
     init {
-        mItems = ArrayList()
         mItems.addAll(data)
     }
 

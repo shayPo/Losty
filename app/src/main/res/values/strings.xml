@@ -51,6 +51,8 @@
     <string name="select_line">בחר קו :</string>
     <string name="line">קו</string>
     <string name="desc">image</string>
+    <string name="results"> תוצאות %1$d</string>
+    <string name="search_object">type</string>
 
     <string-array name="bus_lins">
         <item>22</item>

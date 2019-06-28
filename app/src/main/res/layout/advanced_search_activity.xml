@@ -18,8 +18,10 @@
             >
 
             <TextView
+                android:alpha="0.2"
+                android:id="@+id/search_public_transportation_text"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/search_public_transportation"
@@ -30,7 +32,7 @@
                 android:visibility="gone"
                 android:id="@+id/search_public_transportation_underline"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="2dp"
                 android:background="@color/colorPrimary"></FrameLayout>
 
         </LinearLayout>
@@ -44,8 +46,9 @@
             >
 
             <TextView
+                android:id="@+id/advanced_search_text"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/advanced_search"
@@ -55,7 +58,7 @@
             <FrameLayout
                 android:id="@+id/advanced_search_underline"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="2dp"
                 android:background="@color/colorPrimary"></FrameLayout>
 
         </LinearLayout>
