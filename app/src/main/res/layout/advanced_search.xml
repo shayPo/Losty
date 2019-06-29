@@ -109,13 +109,13 @@
         android:layout_marginRight="25dp"
         android:background="@color/colorPrimary"></FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/results_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingEnd="25dp"
         android:paddingStart="25dp"
         android:paddingTop="10dp"
-        android:paddingBottom="15dp"></android.support.v7.widget.RecyclerView>
+        android:paddingBottom="15dp"></androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

@@ -10,11 +10,11 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.fond.lost.losty.R
 import com.fond.lost.losty.presenter.LocationPresenter
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
@@ -125,7 +125,6 @@ class SearchByLocationActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                 LocationPresenter.getInstance(this, this)
                 mMoveMap = true
             }
-
         }
         //off
         else {

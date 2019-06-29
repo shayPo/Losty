@@ -3,17 +3,26 @@ package com.fond.lost.losty.view
 import android.os.Bundle
 import android.view.View
 import com.fond.lost.losty.R
+import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.presenter.AdvancedSearchPresenter
 import com.fond.lost.losty.presenter.ItemDataPresenter
 import com.fond.lost.losty.view.fragments.AdvancedSearch
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.advanced_search_activity.*
+import com.google.firebase.database.GenericTypeIndicator
+import org.json.JSONObject
+
+//import android.R
+
+
 
 
 /**
  * Created by Sahar on 20/04/2018.
  */
-class AdvancedSearchActivity : BaseActivity(), View.OnClickListener {
-
+class AdvancedSearchActivity : BaseActivity(), View.OnClickListener, AdvancedSearch.AdvancedSearchListener , ValueEventListener {
     var mSearchType: Int = 0
     private lateinit var mPresenter : AdvancedSearchPresenter
 
@@ -54,4 +63,23 @@ class AdvancedSearchActivity : BaseActivity(), View.OnClickListener {
             putFragment(AdvancedSearch.newInstance(mSearchType), R.id.search_frame)
         }
     }
+
+    override fun getData(type : String, location : String) {
+        mPresenter.getData(type, location, mSearchType, this)
+    }
+
+    override fun onDataChange(p0: DataSnapshot) {
+        val type = object : GenericTypeIndicator<SearchItem>() {}
+        var data = mutableListOf<SearchItem>()
+        for (postSnapshot in p0.children) {
+            var item = postSnapshot.getValue(type)
+            data.add(item!!)
+        }
+        AdvancedSearch.Instance?.setupResults(data!!)
+    }
+
+    override fun onCancelled(p0: DatabaseError) {
+
+    }
+
 }

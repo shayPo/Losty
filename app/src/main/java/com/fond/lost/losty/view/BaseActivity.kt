@@ -1,16 +1,23 @@
 package com.fond.lost.losty.view
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
+//import android.support.v4.app.Fragment
+//import android.support.v4.app.FragmentTransaction
+//import android.content.Intent
+//import android.os.Bundle
+//import android.support.v4.view.GravityCompat
+//import android.support.v7.app.ActionBarDrawerToggle
+//import android.support.v7.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.fond.lost.losty.R
 import com.fond.lost.losty.view.fragments.SideMenu
 import kotlinx.android.synthetic.main.base_view.*
@@ -81,7 +88,7 @@ open class BaseActivity : AppCompatActivity(), SideMenu.MenuClickListener {
 
     open fun init()
     {
-        toolbar_actionbar.setTitle("")
+        toolbar_actionbar.title = ""
         setSupportActionBar(toolbar_actionbar)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar_actionbar, R.string.navigation_drawer_open,

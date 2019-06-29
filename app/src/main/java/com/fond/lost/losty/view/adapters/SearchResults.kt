@@ -1,9 +1,9 @@
 package com.fond.lost.losty.view.adapters
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.fond.lost.losty.R
 import com.fond.lost.losty.model.SearchItem
 import kotlinx.android.synthetic.main.search_item.view.*
@@ -50,7 +50,7 @@ class SearchResults(data: List<SearchItem>) : RecyclerView.Adapter<SearchResults
             mDistance?.text = data.mDistance
             mDescription?.text = data.mDescription
             mLocation?.text = data.mLocation
-            mItemImage?.setImageResource(data.mItemImage)
+            mItemImage?.setImageResource(R.drawable.type_dog)
         }
     }
 }

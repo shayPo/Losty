@@ -1,7 +1,6 @@
 package com.fond.lost.losty.view.fragments
 
 import android.app.AlertDialog
-import android.support.v4.app.Fragment
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -15,8 +14,9 @@ import com.fond.lost.losty.R
 import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.view.adapters.SearchResults
 import kotlinx.android.synthetic.main.advanced_search.*
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fond.lost.losty.view.ItemDataActivity
 
 
@@ -121,36 +121,11 @@ class AdvancedSearch : Fragment(), View.OnClickListener, DialogInterface.OnClick
             searchParameter.append(selected_city.text)
             search_pramters.text = searchParameter.toString()
 
-
-            //TODO: add server data
-            temp()
+            (activity as AdvancedSearchListener).getData(selected_type.text.toString(), selected_city.text.toString())
         }
     }
 
-    private fun temp() {
-        val results = ArrayList<SearchItem>()
-
-        results.add(SearchItem())
-        results.add(SearchItem())
-        results.add(SearchItem())
-        results.add(SearchItem())
-        results.add(SearchItem())
-        results.add(SearchItem())
-        setupResults(results)
-    }
-
-    private fun setupResults(results: ArrayList<SearchItem>) {
-//        number_of_results.text = "" + results.size + " תוצאות "
-//        val layoutManager = LinearLayoutManager(activity)
-//        val dividerItemDecoration = DividerItemDecoration(activity,
-//                layoutManager.orientation)
-//        dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.divider))
-//        results_display.addItemDecoration(dividerItemDecoration)
-//        results_display.layoutManager = layoutManager
-//        results_display.adapter = SearchResults(results, this)
-
-
-
+    public fun setupResults(results: List<SearchItem>) {
         number_of_results.text = getString(R.string.results, results.size)
         val layoutManager = LinearLayoutManager(activity!!.applicationContext)
         val dividerItemDecoration = DividerItemDecoration(activity,
@@ -163,17 +138,26 @@ class AdvancedSearch : Fragment(), View.OnClickListener, DialogInterface.OnClick
 //        results_display.setOnTouchListener{ view, motionEvent -> true}
     }
 
+    interface AdvancedSearchListener
+    {
+        fun getData(type : String, location : String)
+    }
+
     companion object {
         const val TYPE_ADVANCED_SEARCH = 1
         const val TYPE_ADVANCED_SEARCH_PUBLIC_TRANSPORTATION = 2
         const val TYPE = "type"
+        var Instance : AdvancedSearch? = null
 
         fun newInstance(type: Int): Fragment {
             val args = Bundle()
             args.putInt(TYPE, type)
             val fragment = AdvancedSearch()
             fragment.arguments = args
+            Instance = fragment
             return fragment
         }
+
+        fun Instance() = Instance
     }
 }

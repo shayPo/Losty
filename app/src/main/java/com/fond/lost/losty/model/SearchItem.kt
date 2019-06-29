@@ -3,10 +3,20 @@ package com.fond.lost.losty.model
 import android.os.Parcelable
 import com.fond.lost.losty.R
 import kotlinx.android.parcel.Parcelize
+import org.json.JSONObject
 
 @Parcelize
-data class SearchItem(val mDistance : String = "2.5 קמ",
-        val mDescription : String = "כלב שחור עם כתמים לבנים",
-        val mLocation : String = "תל אביב, הרצל 4",
-        val mItemImage : Int = R.drawable.type_dog
+data class SearchItem(var mDistance : String = "",
+        var mDescription : String = "",
+        var mLocation : String = "",
+        var mItemImage : Int = 0
 ) : Parcelable
+{
+    constructor(data : String) : this() {
+        val jsonData = JSONObject(data)
+        mDistance = jsonData.getString("mDistance")
+        mDescription = jsonData.getString("mDescription")
+        mLocation = jsonData.getString("mLocation")
+        mItemImage = jsonData.getInt("mItemImage")
+    }
+}
