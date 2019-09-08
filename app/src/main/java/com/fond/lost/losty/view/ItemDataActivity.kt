@@ -1,5 +1,6 @@
 package com.fond.lost.losty.view
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -22,23 +23,24 @@ class ItemDataActivity : BaseActivity()
 
     override fun init() {
         super.init()
-        //TODO: replace DATA with const val
         mPresenter = ItemDataPresenter(intent.getParcelableExtra("DATA"))
         item_image.setFactory{
             val imageView = ImageView(applicationContext)
             imageView.scaleType = ImageView.ScaleType.FIT_XY
             imageView
         }
+        item_image.tag = 0
+        item_image.setImageURI(Uri.parse(mPresenter.mData.mItemImage[0]))
     }
 
     fun nextImage(view : View?)
     {
-            item_image.setImageResource(R.drawable.type_dog_large)
+        mPresenter.nextImage(item_image as ImageView)
     }
 
-    fun previousIImage(view : View?)
+    fun previousImage(view : View?)
     {
-        item_image.setImageResource(R.drawable.type_cat_large)
+        mPresenter.previousImage(item_image as ImageView)
     }
 
 

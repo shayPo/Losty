@@ -2,6 +2,7 @@ package com.fond.lost.losty.view
 
 import android.os.Bundle
 import android.view.View
+import com.fond.lost.losty.App
 import com.fond.lost.losty.R
 import com.fond.lost.losty.model.SearchItem
 import com.fond.lost.losty.presenter.AdvancedSearchPresenter
@@ -72,8 +73,11 @@ class AdvancedSearchActivity : BaseActivity(), View.OnClickListener, AdvancedSea
         val type = object : GenericTypeIndicator<SearchItem>() {}
         var data = mutableListOf<SearchItem>()
         for (postSnapshot in p0.children) {
-            var item = postSnapshot.getValue(type)
-            data.add(item!!)
+            var item = SearchItem.parseJson(postSnapshot.toString())
+            data.add(item)
+//            var item = postSnapshot.getValue(type)
+//            var item = SearchItem.parseJson()
+//            data.add(item!!)
         }
         AdvancedSearch.Instance?.setupResults(data!!)
     }
